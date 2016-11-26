@@ -1,0 +1,17 @@
+{
+  "name": "frontle-upload-file",
+  "version": "1.0.0",
+  "description": "Frontle upload file middleware",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "frontle",
+    "upload",
+    "file",
+    "middleware"
+  ],
+  "author": "Utkarsh85",
+  "license": "MIT"
+}
