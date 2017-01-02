@@ -1,8 +1,8 @@
 var fileUpload= function (options) {
 
 	var required=['input','uploadTrigger','uploadHeaders','uploadUrl','success','error'];
-
-	if(!options.hasOwnProperty('input') || !options.hasOwnProperty('uploadTrigger') || !options.hasOwnProperty('uploadUrl') || !options.hasOwnProperty('uploadHeaders') || !options.hasOwnProperty('uploadHeaders') || !options.hasOwnProperty('succes') || !options.hasOwnProperty('error'))
+	// console.log(options);
+	if(!options.hasOwnProperty('input') || !options.hasOwnProperty('uploadTrigger') || !options.hasOwnProperty('uploadUrl') || !options.hasOwnProperty('uploadHeaders') || !options.hasOwnProperty('success') || !options.hasOwnProperty('error'))
 		throw {msg:'Required properties'+required.join(',') +' not found.'};
 
 	$(options.input).addClass('no-file-added');
@@ -12,6 +12,11 @@ var fileUpload= function (options) {
 		inputChangeHandle: function (ctx,next) {
 			$(options.input).on('change',function (val) {
 				$(options.input).removeClass('no-file-added');
+
+				if(options.hasOwnProperty('triggerOnChange') && options.triggerOnChange)
+				{
+					$(options.uploadTrigger).trigger("click");
+				}
 			});
 
 			next();
@@ -48,7 +53,7 @@ var fileUpload= function (options) {
 					{
 						var formData = new FormData();
 						formData.append('file', $(options.input)[0].files[0]);
-						return resolve(formData);
+						return formData;
 					}
 					else
 						return null;
